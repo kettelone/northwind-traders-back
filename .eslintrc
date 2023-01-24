@@ -1,0 +1,21 @@
+{
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "project": "./tsconfig.json"
+    },
+    "plugins": [
+        "@typescript-eslint",
+        "prettier"
+    ],
+    "extends": [
+        "airbnb-base",
+        "prettier"
+    ],
+    "rules": {
+        "no-console": 1, // Remember, this means error!
+        "prettier/prettier": 1, // Means error
+        "useTabs": false,
+        "trailingComma": "none"
+    }
+}
