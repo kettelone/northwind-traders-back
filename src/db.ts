@@ -5,7 +5,6 @@ import { Sequelize } from 'sequelize'
 import { emmiter } from './controller/dashboardController'
 
 let searchQuery: any
-// console.log('Hello')
 const sequelize = new Sequelize(
 	process.env.DB_NAME!,
 	process.env.DB_USERNAME!,
