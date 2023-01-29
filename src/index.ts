@@ -16,12 +16,12 @@ app.get('/', (req, res) => {
 app.use('/api', router)
 app.use(apiErrorHandler) // Error handler middleware. Shoud be the last middleware
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 3002
 
 const start = async () => {
 	try {
-		await sequelize.authenticate()
-		await sequelize.sync() // будет сверят состояние базы данных со схемой данных
+		// await sequelize.authenticate()
+		// await sequelize.sync() // будет сверят состояние базы данных со схемой данных
 		// sync({ force: true }) - deletes everything!!!
 		app.listen(PORT, async () => {
 			console.log(`Server started on port ${PORT}`)

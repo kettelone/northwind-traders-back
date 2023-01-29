@@ -5,18 +5,14 @@ import { Sequelize } from 'sequelize'
 import { emmiter } from './controller/dashboardController'
 
 let searchQuery: any
+
 const sequelize = new Sequelize(
-	// process.env.DB_NAME! ||
-	'northwind_traders_db',
-	// process.env.DB_USERNAME! ||
-	'postgres',
-	// process.env.DB_PASSWORD ||
-	'guestdxb',
+	process.env.DB_NAME!,
+	process.env.DB_USERNAME!,
+	process.env.DB_PASSWORD,
 	{
-		host: 'northwind-traders-db.cozbnpykax7t.eu-west-1.rds.amazonaws.com',
-		// process.env.DB_HOST ||,
-		port: 5432,
-		// +process.env.DB_PORT! || 5432,
+		host: process.env.DB_HOST,
+		port: +process.env.DB_PORT!,
 		dialect: 'postgres',
 		dialectModule: pg,
 		define: {
