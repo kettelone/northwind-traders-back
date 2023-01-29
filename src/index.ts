@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 app.use('/api', router)
 app.use(apiErrorHandler) // Error handler middleware. Shoud be the last middleware
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 5000
 
 const start = async () => {
 	try {
