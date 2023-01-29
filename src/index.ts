@@ -10,6 +10,9 @@ dotenv.config()
 const app: Express = express()
 app.use(cors()) // чтобы можно было отправлять запросы с браузера
 app.use(express.json()) // чтобы приложение могло парсить json формат
+app.get('/', (req, res) => {
+	res.send('Northwind Traders')
+})
 app.use('/api', router)
 app.use(apiErrorHandler) // Error handler middleware. Shoud be the last middleware
 
