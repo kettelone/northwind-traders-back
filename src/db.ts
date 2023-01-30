@@ -2,10 +2,9 @@ import dotenv from 'dotenv'
 dotenv.config()
 import * as pg from 'pg'
 import { Sequelize } from 'sequelize'
-import { emmiter } from './controller/dashboardController'
+// import { emmiter } from './controller/dashboardController'
 
-let searchQuery: any
-
+// let searchQuery: any
 const sequelize = new Sequelize(
 	process.env.DB_NAME!,
 	process.env.DB_USERNAME!,
@@ -19,10 +18,7 @@ const sequelize = new Sequelize(
 			timestamps: false
 		},
 		benchmark: true,
-		logging: (...msg) => {
-			searchQuery = { msg }
-			emmiter.emit('newMessage', searchQuery)
-		}
+		logging: false
 	}
 )
 

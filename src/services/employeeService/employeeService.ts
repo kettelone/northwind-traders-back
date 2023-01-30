@@ -1,11 +1,16 @@
 import { Employee } from '../../models/model'
 import { EmployeeInstance } from '../../models/interfaces'
+import combineSearchData from '../utils'
+
 const { col, fn } = Employee.sequelize!
+
 class EmployeeService {
 	async getAll(page: string, limit: string) {
 		const finalPage = +page || 1
 		const finalLimit = +limit || 20
 		const offset = finalPage * finalLimit - finalLimit
+
+		let searchQuery: any = {}
 
 		const employees = await Employee.findAndCountAll({
 			limit: finalLimit,
@@ -17,16 +22,24 @@ class EmployeeService {
 				'city',
 				'homePhone',
 				'country'
-			]
+			],
+			benchmark: true,
+			logging: (...data) => {
+				searchQuery = data
+			}
 		})
 		if (!employees) {
 			return 'No employee found'
 		}
 
-		return employees
+		const searchData = combineSearchData(searchQuery, employees.rows.length)
+
+		return { employees, searchData }
 	}
 
 	async getOne(id: number) {
+		let searchQuery: any = {}
+
 		interface EmployeeUpdated extends EmployeeInstance {
 			reportsToPersonId?: number
 			fullName?: string
@@ -48,7 +61,11 @@ class EmployeeService {
 				[ 'homePhone', 'Home Phone' ],
 				[ 'extension', 'Extension' ],
 				[ 'notes', 'Notes' ]
-			]
+			],
+			benchmark: true,
+			logging: (...data) => {
+				searchQuery = data
+			}
 		})
 
 		if (!employee) {
@@ -68,9 +85,14 @@ class EmployeeService {
 			return employee
 		}
 
+		const searchData = combineSearchData(searchQuery, 1)
+
 		return {
+			// employee: {
 			...employee,
 			...{ 'Reports To': reportsTo.fullName }
+			// },
+			// searchData
 		}
 	}
 }
