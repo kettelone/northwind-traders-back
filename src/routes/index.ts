@@ -5,7 +5,6 @@ import orderRouter from './orderRouter/orderRouter'
 import employeeRouter from './employeeRoute/employeeRoute'
 import customerRouter from './customerRouter/customerRouter'
 import searchRouter from './searchRouter/searchRouter'
-import dashboardRouter from './dashboardRouter/dashboardRouter'
 
 const router = express.Router()
 
@@ -15,6 +14,5 @@ router.use('/order', orderRouter)
 router.use('/employee', employeeRouter)
 router.use('/customer', customerRouter)
 router.use('/info', searchRouter)
-router.use('/dash', dashboardRouter)
 
 export default router
