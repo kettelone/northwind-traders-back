@@ -14,7 +14,7 @@ interface SearchQueryInfo {
 }
 
 const combineSearchData = (
-	searchQuery: [string, number, { type: string }],
+	searchQuery: [string, number, { type: string; where: string }],
 	resultCount: number
 ) => {
 	const data: SearchQueryInfo = {
@@ -27,7 +27,7 @@ const combineSearchData = (
 			query_count: 1,
 			result_count: +resultCount,
 			select: searchQuery[2].type === 'SELECT' ? 1 : 0,
-			select_where: searchQuery[2].type === 'SELECT_WHERE' ? 1 : 0,
+			select_where: searchQuery[2].where ? 1 : 0,
 			select_left_join: searchQuery[2].type === 'SELECT LEFT JOIN' ? 1 : 0
 		}
 	}

@@ -1,10 +1,12 @@
 import { Product, Supplier } from '../../models/model'
+import combineSearchData from '../utils'
 
 class ProductService {
 	async getAll(page: string, limit: string) {
 		const finalPage = +page || 1
 		const finalLimit = +limit || 20
 		const offset = finalPage * finalLimit - finalLimit
+		let searchQuery: any = {}
 
 		const products = await Product.findAndCountAll({
 			limit: finalLimit,
@@ -16,16 +18,24 @@ class ProductService {
 				'unitPrice',
 				'unitsInStock',
 				'unitsOnOrder'
-			]
+			],
+			benchmark: true,
+			logging: (...data) => {
+				searchQuery = data
+			}
 		})
 		if (!products) {
 			return 'Product was not found'
 		}
 
-		return products
+		const searchData = combineSearchData(searchQuery, products.rows.length)
+
+		return { products, searchData }
 	}
 
 	async getOne(id: number) {
+		let searchQuery: any = {}
+
 		const product = await Product.findOne({
 			where: { id },
 			attributes: [
@@ -37,7 +47,10 @@ class ProductService {
 				[ 'reorderLevel', 'Reorder Level' ],
 				[ 'discontinued', 'Discontinued' ],
 				[ 'supplierId', 'supplierId' ]
-			]
+			],
+			logging: (...data) => {
+				searchQuery = data
+			}
 		})
 		if (!product) {
 			return 'Product doesn`t exist'
@@ -49,10 +62,13 @@ class ProductService {
 			return 'Supplier doesn`t exist'
 		}
 
+		const searchData = combineSearchData(searchQuery, 1)
+
 		const keyValues = Object.entries(product.dataValues)
 		keyValues.splice(1, 0, [ 'Supplier', supplier.companyName ])
 		const finalProduct = Object.fromEntries(keyValues)
-		return finalProduct
+
+		return { finalProduct, searchData }
 	}
 }
 

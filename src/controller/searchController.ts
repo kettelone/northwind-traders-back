@@ -13,7 +13,7 @@ class SearchController {
 			if (products) {
 				const productsResult = await searchService.findProducts(products)
 
-				if (!productsResult || productsResult.count === 0) {
+				if (!productsResult) {
 					res.send('No results')
 					return
 				}
@@ -23,7 +23,7 @@ class SearchController {
 
 			if (customers) {
 				const customersResult = await searchService.findCustomers(customers)
-				if (!customersResult || customersResult.count === 0) {
+				if (!customersResult) {
 					res.send('No results')
 					return
 				}

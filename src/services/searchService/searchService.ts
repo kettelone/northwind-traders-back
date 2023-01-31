@@ -1,8 +1,11 @@
 import { Product, Customer } from '../../models/model'
 const sequelize = require('sequelize')
+import combineSearchData from '../utils'
 
 class SearchService {
 	async findProducts(products: string) {
+		let searchQuery: any = {}
+
 		const result = await Product.findAndCountAll({
 			where: {
 				productName: sequelize.where(
@@ -10,12 +13,19 @@ class SearchService {
 					'LIKE',
 					'%' + products.toLowerCase() + '%'
 				)
+			},
+			benchmark: true,
+			logging: (...data) => {
+				searchQuery = data
 			}
 		})
-		return result
+		const searchData = combineSearchData(searchQuery, result.rows.length)
+		return { result, searchData }
 	}
 
 	async findCustomers(customers: string) {
+		let searchQuery: any = {}
+
 		const result = await Customer.findAndCountAll({
 			where: {
 				companyName: sequelize.where(
@@ -23,9 +33,15 @@ class SearchService {
 					'LIKE',
 					'%' + customers.toLowerCase() + '%'
 				)
+			},
+			benchmark: true,
+			logging: (...data) => {
+				searchQuery = data
 			}
 		})
-		return result
+		const searchData = combineSearchData(searchQuery, result.rows.length)
+
+		return { result, searchData }
 	}
 }
 

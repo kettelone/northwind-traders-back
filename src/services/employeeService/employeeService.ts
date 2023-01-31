@@ -81,18 +81,18 @@ class EmployeeService {
 				]
 			}
 		})
-		if (!reportsTo) {
-			return employee
-		}
 
 		const searchData = combineSearchData(searchQuery, 1)
+		if (!reportsTo) {
+			return { employee, searchData }
+		}
 
 		return {
-			// employee: {
-			...employee,
-			...{ 'Reports To': reportsTo.fullName }
-			// },
-			// searchData
+			employee: {
+				...employee,
+				...{ 'Reports To': reportsTo.fullName }
+			},
+			searchData
 		}
 	}
 }

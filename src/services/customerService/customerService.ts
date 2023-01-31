@@ -6,7 +6,6 @@ class CustomerService {
 		const finalPage = +page || 1
 		const finalLimit = +limit || 20
 		const offset = finalPage * finalLimit - finalLimit
-
 		let searchQuery: any = {}
 
 		const customers = await Customer.findAndCountAll({

@@ -5,6 +5,7 @@ class OrderService {
 		const finalPage = +page || 1
 		const finalLimit = +limit || 20
 		const offset = finalPage * finalLimit - finalLimit
+
 		const orders = await Order.findAndCountAll({
 			limit: finalLimit,
 			offset,
