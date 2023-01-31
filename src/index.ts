@@ -5,7 +5,6 @@ import express, { Express } from 'express'
 import sequelize from './db'
 import router from './routes/index'
 import apiErrorHandler from './middleware/errorHandling'
-
 const PORT = process.env.PORT || 3002
 const app: Express = express()
 
@@ -13,7 +12,9 @@ app.use(cors()) // чтобы можно было отправлять запр�
 app.use(express.json()) // чтобы приложение могло парсить json формат
 app.use('/api', router)
 app.use(apiErrorHandler) // Error handler middleware. Shoud be the last middleware
-
+app.get('/', (req, res) => {
+	res.send('Connected to Northwind Traders')
+})
 const start = async () => {
 	try {
 		await sequelize.authenticate()
