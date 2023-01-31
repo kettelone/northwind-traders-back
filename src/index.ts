@@ -5,7 +5,7 @@ import express, { Express } from 'express'
 import sequelize from './db'
 import router from './routes/index'
 import apiErrorHandler from './middleware/errorHandling'
-const PORT = process.env.PORT || 3002
+const PORT = +process.env.PORT! || 3000
 const app: Express = express()
 
 app.use(cors()) // чтобы можно было отправлять запросы с браузера
