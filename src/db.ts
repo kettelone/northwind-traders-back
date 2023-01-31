@@ -2,9 +2,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 import * as pg from 'pg'
 import { Sequelize } from 'sequelize'
-// import { emmiter } from './controller/dashboardController'
 
-// let searchQuery: any
 const sequelize = new Sequelize(
 	process.env.DB_NAME!,
 	process.env.DB_USERNAME!,
