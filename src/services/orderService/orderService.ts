@@ -1,4 +1,5 @@
 import { Order, Shipper, OrderDetail, Product } from '../../models/model'
+const { col, fn } = Order.sequelize!
 
 class OrderService {
 	async findOrders(page: string, limit: string) {
@@ -9,7 +10,13 @@ class OrderService {
 		const orders = await Order.findAndCountAll({
 			limit: finalLimit,
 			offset,
-			attributes: [ 'id', 'shippedDate', 'shipName', 'shipCity', 'shipCountry' ]
+			attributes: [
+				'id',
+				[ fn('to_char', col('shippedDate'), 'YYYY-MM-DD'), 'shippedDate' ],
+				'shipName',
+				'shipCity',
+				'shipCountry'
+			]
 		})
 
 		const ordersId = orders.rows.map((order) => order.id)
@@ -67,7 +74,21 @@ class OrderService {
 
 	async findOne(id: number) {
 		const order = await Order.findOne({
-			where: { id }
+			where: { id },
+			attributes: [
+				'id',
+				[ fn('to_char', col('orderDate'), 'YYYY-MM-DD'), 'orderDate' ],
+				[ fn('to_char', col('requiredDate'), 'YYYY-MM-DD'), 'requiredDate' ],
+				[ fn('to_char', col('shippedDate'), 'YYYY-MM-DD'), 'shippedDate' ],
+				'shipVia',
+				'freight',
+				'shipName',
+				'shipAddress',
+				'shipCity',
+				'shipRegion',
+				'shipPostalCode',
+				'shipCountry'
+			]
 		})
 
 		if (!order) {
