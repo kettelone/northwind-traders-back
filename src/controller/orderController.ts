@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import APIError from '../errors/apiError'
-import orderService from '../services/orderService/orderService'
+import orderService from '../services/orderService'
 class OrderClass {
 	public async getAllOrders(
 		req: Request<any, any, any, { limit: string; page: string }>,

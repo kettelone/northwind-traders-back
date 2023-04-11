@@ -1,5 +1,5 @@
-import { Product, Supplier } from '../../models/relations'
-import combineSearchData from '../../utils/utils'
+import { Product, Supplier } from '../models/relations'
+import combineSearchData from '../utils/utils'
 
 class ProductService {
 	async getAll(page: string, limit: string) {

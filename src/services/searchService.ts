@@ -1,6 +1,6 @@
-import { Product, Customer } from '../../models/relations'
+import { Product, Customer } from '../models/relations'
 const sequelize = require('sequelize')
-import combineSearchData from '../../utils/utils'
+import combineSearchData from '../utils/utils'
 
 class SearchService {
 	async findProducts(products: string) {

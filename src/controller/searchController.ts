@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import APIError from '../errors/apiError'
-import searchService from '../services/searchService/searchService'
+import searchService from '../services/searchService'
 
 class SearchController {
 	public async findInfo(

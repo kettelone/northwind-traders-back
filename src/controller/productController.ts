@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import APIError from '../errors/apiError'
-import productService from '../services/productService/productService'
+import productService from '../services/productService'
 
 class ProductController {
 	public async getAllProducts(

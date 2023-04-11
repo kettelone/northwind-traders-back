@@ -1,4 +1,4 @@
-import { Order, Shipper, OrderDetail, Product } from '../../models/relations'
+import { Order, Shipper, OrderDetail, Product } from '../models/relations'
 const { col, fn } = Order.sequelize!
 
 class OrderService {

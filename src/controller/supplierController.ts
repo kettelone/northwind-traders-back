@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import APIError from '../errors/apiError'
-import supplierService from '../services/supplierService/supplierService'
+import supplierService from '../services/supplierService'
 class SupplierController {
 	public async getAllSuppliers(
 		req: Request<any, any, any, { limit: string; page: string }>,
