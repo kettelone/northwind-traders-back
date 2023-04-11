@@ -3,7 +3,7 @@ import APIError from '../errors/apiError'
 import searchService from '../services/searchService/searchService'
 
 class SearchController {
-	async findInfo(
+	public async findInfo(
 		req: Request<any, any, any, { products?: any; customers?: any }>,
 		res: Response,
 		next: NextFunction

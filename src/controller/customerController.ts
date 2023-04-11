@@ -3,7 +3,7 @@ import APIError from '../errors/apiError'
 import customerService from '../services/customerService/customerService'
 
 class CustomerController {
-	async getAllCustomers(
+	public async getAllCustomers(
 		req: Request<any, any, any, { page: string; limit: string }>,
 		res: Response,
 		next: NextFunction
@@ -21,7 +21,7 @@ class CustomerController {
 		}
 	}
 
-	async getOneCustomer(
+	public async getOneCustomer(
 		req: Request<any, any, any, { id: number }>,
 		res: Response,
 		next: NextFunction

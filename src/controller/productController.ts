@@ -3,7 +3,7 @@ import APIError from '../errors/apiError'
 import productService from '../services/productService/productService'
 
 class ProductController {
-	async getAllProducts(
+	public async getAllProducts(
 		req: Request<any, any, any, { limit: string; page: string }>,
 		res: Response,
 		next: NextFunction
@@ -20,7 +20,7 @@ class ProductController {
 		}
 	}
 
-	async getOneProduct(
+	public async getOneProduct(
 		req: Request<any, any, any, { id: number }>,
 		res: Response,
 		next: NextFunction

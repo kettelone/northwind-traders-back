@@ -3,7 +3,7 @@ import APIError from '../errors/apiError'
 import employeeService from '../services/employeeService/employeeService'
 
 class EmployeeController {
-	async getAll(
+	public async getAll(
 		req: Request<any, any, any, { page: string; limit: string }>,
 		res: Response,
 		next: NextFunction
@@ -21,7 +21,7 @@ class EmployeeController {
 		}
 	}
 
-	async getOne(
+	public async getOne(
 		req: Request<any, any, any, { id: number }>,
 		res: Response,
 		next: NextFunction

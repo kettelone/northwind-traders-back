@@ -1,10 +1,10 @@
 import express from 'express'
-import supplierRouter from './supplierRouter/supplierRouter'
-import productRoter from './productRouter/productRouter'
-import orderRouter from './orderRouter/orderRouter'
-import employeeRouter from './employeeRoute/employeeRoute'
-import customerRouter from './customerRouter/customerRouter'
-import searchRouter from './searchRouter/searchRouter'
+import supplierRouter from './supplierRouter'
+import productRoter from './productRouter'
+import orderRouter from './orderRouter'
+import employeeRouter from './employeeRoute'
+import customerRouter from './customerRouter'
+import searchRouter from './searchRouter'
 
 const router = express.Router()
 

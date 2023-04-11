@@ -1,4 +1,4 @@
-import { Order, Shipper, OrderDetail, Product } from '../../models/model'
+import { Order, Shipper, OrderDetail, Product } from '../../models/relations'
 const { col, fn } = Order.sequelize!
 
 class OrderService {
@@ -21,7 +21,7 @@ class OrderService {
 
 		const ordersId = orders.rows.map((order) => order.id)
 
-		//get all oreders details for all queried orders
+		//get all orders details for all queried orders
 		const orderDetails = await OrderDetail.findAll({
 			where: { orderId: ordersId }
 		})

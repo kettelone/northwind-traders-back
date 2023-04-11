@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express'
 import APIError from '../errors/apiError'
 import orderService from '../services/orderService/orderService'
 class OrderClass {
-	async getAllOrders(
+	public async getAllOrders(
 		req: Request<any, any, any, { limit: string; page: string }>,
 		res: Response,
 		next: NextFunction
@@ -21,7 +21,7 @@ class OrderClass {
 		}
 	}
 
-	async getOneOrder(
+	public async getOneOrder(
 		req: Request<any, any, any, { id: number }>,
 		res: Response,
 		next: NextFunction

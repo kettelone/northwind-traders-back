@@ -1,6 +1,6 @@
-import { Employee } from '../../models/model'
-import { EmployeeInstance } from '../../models/interfaces'
-import combineSearchData from '../utils'
+import { Employee } from '../../models/relations'
+import { EmployeeInstance } from '../../models/Employee/interface'
+import combineSearchData from '../../utils/utils'
 
 const { col, fn } = Employee.sequelize!
 

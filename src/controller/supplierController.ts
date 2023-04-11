@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express'
 import APIError from '../errors/apiError'
 import supplierService from '../services/supplierService/supplierService'
 class SupplierController {
-	async getAllSuppliers(
+	public async getAllSuppliers(
 		req: Request<any, any, any, { limit: string; page: string }>,
 		res: Response,
 		next: NextFunction
@@ -20,7 +20,7 @@ class SupplierController {
 		}
 	}
 
-	async getOneSupplier(
+	public async getOneSupplier(
 		req: Request<any, any, any, { id: number }>,
 		res: Response,
 		next: NextFunction
